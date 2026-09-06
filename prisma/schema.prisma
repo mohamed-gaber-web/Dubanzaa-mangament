@@ -1,5 +1,8 @@
 generator client {
-  provider = "prisma-client"
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
+  runtime      = "nodejs"
+  moduleFormat = "cjs"
 }
 
 datasource db {
@@ -12,3 +15,14 @@ model Brand {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model Category {
+  id        String   @id @default(uuid())
+  name      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// any changes here please apply migration to aplly on database
+// npx prisma migrate dev --name create-category
+// npx prisma generate this.prisma.tablename
