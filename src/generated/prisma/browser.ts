@@ -22,3 +22,8 @@ export * from './enums.js';
  * 
  */
 export type Brand = Prisma.BrandModel
+/**
+ * Model Category
+ * 
+ */
+export type Category = Prisma.CategoryModel
