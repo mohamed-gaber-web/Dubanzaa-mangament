@@ -27,3 +27,8 @@ export type Brand = Prisma.BrandModel
  * 
  */
 export type Category = Prisma.CategoryModel
+/**
+ * Model Product
+ * 
+ */
+export type Product = Prisma.ProductModel
