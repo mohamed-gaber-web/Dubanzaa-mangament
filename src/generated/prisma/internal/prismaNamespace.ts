@@ -399,7 +399,8 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 export const ModelName = {
   Brand: 'Brand',
   Category: 'Category',
-  Product: 'Product'
+  Product: 'Product',
+  Color: 'Color'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -415,7 +416,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "brand" | "category" | "product"
+    modelProps: "brand" | "category" | "product" | "color"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -641,6 +642,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Color: {
+      payload: Prisma.$ColorPayload<ExtArgs>
+      fields: Prisma.ColorFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ColorFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ColorPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ColorFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ColorPayload>
+        }
+        findFirst: {
+          args: Prisma.ColorFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ColorPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ColorFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ColorPayload>
+        }
+        findMany: {
+          args: Prisma.ColorFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ColorPayload>[]
+        }
+        create: {
+          args: Prisma.ColorCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ColorPayload>
+        }
+        createMany: {
+          args: Prisma.ColorCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ColorCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ColorPayload>[]
+        }
+        delete: {
+          args: Prisma.ColorDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ColorPayload>
+        }
+        update: {
+          args: Prisma.ColorUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ColorPayload>
+        }
+        deleteMany: {
+          args: Prisma.ColorDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ColorUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ColorUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ColorPayload>[]
+        }
+        upsert: {
+          args: Prisma.ColorUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ColorPayload>
+        }
+        aggregate: {
+          args: Prisma.ColorAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateColor>
+        }
+        groupBy: {
+          args: Prisma.ColorGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ColorGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ColorCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ColorCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -713,6 +788,18 @@ export const ProductScalarFieldEnum = {
 } as const
 
 export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeof ProductScalarFieldEnum]
+
+
+export const ColorScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  hexCode: 'hexCode',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ColorScalarFieldEnum = (typeof ColorScalarFieldEnum)[keyof typeof ColorScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -947,6 +1034,7 @@ export type GlobalOmitConfig = {
   brand?: Prisma.BrandOmit
   category?: Prisma.CategoryOmit
   product?: Prisma.ProductOmit
+  color?: Prisma.ColorOmit
 }
 
 /* Types for Logging */

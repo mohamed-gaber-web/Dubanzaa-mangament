@@ -10,40 +10,47 @@ datasource db {
 }
 
 model Brand {
-  id        String   @id @default(uuid())
-  name      String   @unique
-  products Product[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        String    @id @default(uuid())
+  name      String    @unique
+  products  Product[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 }
 
 model Category {
-  id        String   @id @default(uuid())
-  name      String   @unique
-  products Product[]
+  id        String    @id @default(uuid())
+  name      String    @unique
+  products  Product[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Product {
+  id          String  @id @default(uuid())
+  name        String
+  sku         String  @unique
+  description String?
+  isActive    Boolean @default(true)
+
+  brandId    String
+  categoryId String
+
+  brand    Brand    @relation(fields: [brandId], references: [id])
+  category Category @relation(fields: [categoryId], references: [id])
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
-model Product {
-   id         String   @id @default(uuid())
-  name        String
-  sku         String   @unique
-  description String?
-  isActive    Boolean  @default(true)
-
-  brandId     String
-  categoryId  String
-
-  brand       Brand    @relation(fields: [brandId], references: [id])
-  category    Category @relation(fields: [categoryId], references: [id])
-
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+model Color {
+  id        String   @id @default(uuid())
+  name      String   @unique
+  hexCode   String
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 // any changes here please apply migration to aplly on database
 // npx prisma migrate dev --name create-category
 // npx prisma generate this.prisma.tablename
-
-
